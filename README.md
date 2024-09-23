@@ -1,7 +1,5 @@
 # Rust Coding Challenges
 
-Welcome to the Rust Coding Challenges repository! This project is designed to provide a hands-on approach to learning Rust while tackling fundamental computer science concepts through various programming challenges.
-
 ## Project Overview
 
 Every challenging problem can be divided into smaller, manageable tasks. By mastering fundamental concepts in computer science, we can improve our ability to tackle more complex issues. We believe that while AI can assist us in many tasks, understanding the core principles of computer science becomes invaluable as technology evolves.
