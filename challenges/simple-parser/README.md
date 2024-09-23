@@ -20,7 +20,7 @@ To effectively tackle this problem, it is important to have a basic understandin
 2. **`get_lines_lower_case(text: &str) -> Vec<String>`**  
    Converts the input text to lowercase and splits it into lines, returning a vector of strings.
 
-3. **`process_words(content: &str) -> BTreeMap<String, BTreeSet<usize>>`**  
+3. **`solve(content: &str) -> BTreeMap<String, BTreeSet<usize>>`**  
    Processes the content of the text, identifying unique words and mapping them to the line numbers where they appear.
 
 4. **`read_file_from_args() -> Result<String, std::io::Error>`**  
