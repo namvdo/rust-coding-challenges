@@ -18,7 +18,7 @@ Each challenge will be contained within its own subdirectory and will include th
 ## Challenges
 | Challenge Name  | Complexity | Author       | Relevant Knowledge                     |
 |------------------|------------|--------------|----------------------------------------|
-| Simple Parser     | Easy       | Your Name    | String manipulation, data structures    |
+| Simple Parser     | Easy       | [Rudi Cilibrasi](https://github.com/rudi-cilibrasi)    | String manipulation, data structures    |
 
 ## Getting Started
 
