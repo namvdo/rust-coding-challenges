@@ -1,0 +1,48 @@
+Apple banana cherry
+Banana dog cat
+Rust is a programming language
+Hello world from Rust
+The quick brown fox jumps
+The lazy dog is cute
+This is a test file
+For testing random purposes
+Banana and apple are fruits
+Goodbye and hello
+Rust is a fast language
+Functional programming is fun
+Systems programming is powerful
+Rust ownership model is unique
+Memory safety in Rust is guaranteed
+Performance and safety are priorities in Rust
+Code that doesn’t crash, Rust’s goal
+Concurrent programming is easy in Rust
+Systems language that guarantees thread safety
+Borrow checker ensures safety
+Type system in Rust prevents null pointer dereferences
+Rust has no garbage collector
+Compile-time checks make Rust safe
+Rust's lifetimes prevent memory leaks
+Memory allocation in Rust is deterministic
+Ownership and borrowing make Rust efficient
+Rust’s syntax is modern and concise
+Pattern matching is powerful in Rust
+Generics in Rust allow code reusability
+Rust’s traits enable polymorphism
+Crates and modules organize Rust programs
+Tooling in Rust is modern and fast
+Rust’s standard library is powerful
+Testing in Rust is straightforward
+Cargo makes Rust development easy
+Rust has a growing ecosystem
+Zero-cost abstractions in Rust
+Compile-time errors prevent runtime crashes
+Rust’s error handling is robust
+Rust supports WebAssembly
+Rust’s community is friendly and helpful
+Developers love Rust’s performance guarantees
+Rust is loved for its memory safety
+Rust makes system-level programming safer
+Embedded systems in Rust are efficient
+Rust is increasingly adopted in the industry
+Cloud computing and Rust are a great fit
+Async programming in Rust is becoming popular

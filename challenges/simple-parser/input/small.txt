@@ -1,0 +1,10 @@
+Apple banana cherry
+Banana dog cat
+Rust is a programming language
+Hello world from Rust
+The quick brown fox jumps
+The lazy dog is cute
+This is a test file
+For testing random purposes
+Banana and apple are fruits
+Goodbye and hello
