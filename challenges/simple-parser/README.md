@@ -1,7 +1,6 @@
 # Problem Name: Simple Parser
 
-## Given By
-**Author:** 
+**Author:** [Rudi Cilibrasi](https://github.com/rudi-cilibrasi)
 
 ## Relevant Background Knowledge
 
