@@ -1,4 +1,4 @@
-# Problem Name: Simple Parser
+# Problem: Simple Parser
 
 **Author:** [Rudi Cilibrasi](https://github.com/rudi-cilibrasi)
 
