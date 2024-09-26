@@ -2,6 +2,8 @@
 
 **Author:** [Rudi Cilibrasi](https://github.com/rudi-cilibrasi)
 
+Given a text file containing words in each line, output all unique words in an alphabetical order and list all the lines they appear in. If any of them appears in a single line more than one then only print the line number once for it. Also, the line numbers in which each word appeared should be sorted in increasing order.
+
 ## Relevant Background Knowledge
 
 To effectively tackle this problem, it is important to have a basic understanding of the following concepts:
