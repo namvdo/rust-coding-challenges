@@ -2,9 +2,7 @@
 
 ## Project Overview
 
-Every challenging problem can be divided into smaller, manageable tasks. By mastering fundamental concepts in computer science, we can improve our ability to tackle more complex issues. We believe that while AI can assist us in many tasks, understanding the core principles of computer science becomes invaluable as technology evolves.
-
-This project aims to bridge the gap between theoretical knowledge and practical application. By writing real code and delving into the details, we can connect our knowledge and apply it to various problems of different scales. Ultimately, this journey will enhance our problem-solving skills and deepen our understanding of computer science.
+TBU
 
 - Data structures
 - Algorithms
