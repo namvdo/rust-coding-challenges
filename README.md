@@ -1,7 +1,7 @@
 # Rust Coding Challenges
 
 ## Project Overview
-The current problem while learning practical SE skills for students (including myself) is that there are too many tutorials on the internet for simple and common tasks, but when searching for things that are the bedrock to build functional applications, we're often stopped at some high-level explanation. These can give us the false impression that we understand, but later find that we're stuck on the first line of code. It's always better to get something done rather than doing nothing at all, that's why this project was created to practice CS fundamentals and SE skills that are universally essential regardless of the programming languages you're using.
+The current problem while learning practical SE skills for students (including myself) is that there are too many tutorials on the internet for simple and common tasks, but when searching for things that are the bedrock to build functional applications, we're often stopped at some high-level explanation. These can give us the false impression that we understand, but later find that we're stuck on the first line of code. It's always better to get something done rather than doing nothing at all, that's why this project was created to practice CS fundamentals and SE skills that are universally essential regardless of the programming languages we're using.
 
 ### How will it be done?
 * Real and practical problems when building software will be introduced as challenges in the project with different levels of complexity
