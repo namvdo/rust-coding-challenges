@@ -1,0 +1,41 @@
+name: Test all challenges
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  test:
+    name: Run tests for each challenge
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Rust
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          profile: minimal
+          override: true
+
+      - name: Find Cargo projects
+        id: find-projects
+        run: |
+          projects=$(find challenges/ -name Cargo.toml | xargs dirname)
+          echo "Found projects:"
+          echo "$projects"
+          echo "$projects" > projects_list.txt
+
+      - name: Run Cargo tests for each project
+        run: |
+          while IFS= read -r project; do
+            echo "Running tests in $project"
+            (cd "$project" && cargo test --verbose)
+          done < projects_list.txt
