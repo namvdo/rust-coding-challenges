@@ -1,9 +1,18 @@
 # Rust Coding Challenges
 
 ## Project Overview
+The current problem while learning practical SE skills for students (including myself) is that there are too many tutorials on the internet for simple and common tasks, but when searching for things that are the bedrock to build functional applications, we're often stopped at some high-level explanation. These can give us the false impression that we understand, but later find that we're stuck on the first line of code. It's always better to get something done rather than doing nothing at all, that's why this project was created to practice CS fundamentals and SE skills that are universally essential regardless of the programming languages you're using.
 
-TBU
+### How will it be done?
+* Real and practical problems when building software will be introduced as challenges in the project with different levels of complexity
+* For each challenge:
+  * A challenge folder with descriptions, input, output, and sample data, and the source and test folders
+  * Inside the source folder, there will be the `solve()` and some other functions
+  * README also includes relevant CS/SE concepts and the explanations for steps needed to complete the challenge
+* When implementation is finished, the result will be checked with the pre-defined test cases.
+* Once all test cases are passed, your solution can be merged into the master!
 
+#### What will we learn?
 - Data structures
 - Algorithms
 - Parsing techniques
@@ -11,12 +20,10 @@ TBU
 - Concurrency
 - And more!
 
-Each challenge will be contained within its own subdirectory and will include the problem statement, solution, relevant background knowledge, and testing data.
-
 ## Challenges
 | Challenge Name  | Complexity | Author       | Relevant Knowledge                     |
 |------------------|------------|--------------|----------------------------------------|
-| Simple Parser     | Easy       | [Rudi Cilibrasi](https://github.com/rudi-cilibrasi)    | String manipulation, data structures    |
+| [Simple Parser](https://github.com/namvdo/rust-coding-challenges/tree/master/challenges/simple-parser)     | Easy       | [Rudi Cilibrasi](https://github.com/rudi-cilibrasi)    | String manipulation, data structures    |
 
 ## Getting Started
 
