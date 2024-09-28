@@ -4,6 +4,6 @@ version = "0.1.0"
 edition = "2021"
 
 [workspace]
-members = [ "challenges/simple-parser" ]
+members = [ "challenges/foo", "challenges/simple-parser" , "challenges/wc-command"]
 
 [dependencies]
