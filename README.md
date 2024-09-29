@@ -3,13 +3,13 @@
 ## Project Overview
 The current problem while learning practical SE skills for students (including myself) is that there are too many tutorials on the internet for simple and common tasks, but when searching for things that are the bedrock to build functional applications, we're often stopped at some high-level explanation. These can give us the false impression that we understand, but later find that we're stuck on the first line of code. It's always better to get something done rather than doing nothing at all, that's why this project was created to practice CS fundamentals and SE skills that are universally essential regardless of the programming languages we're using.
 
-### How will it be done?
+### How will we do it?
 * Real and practical problems when building software will be introduced as challenges in the project with different levels of complexity
 * For each challenge:
   * A challenge folder with descriptions, input, output, and sample data, and the source and test folders
   * Inside the source folder, there will be the `solve()` and some other functions
   * README also includes relevant CS/SE concepts and the explanations for steps needed to complete the challenge
-* When implementation is finished, the result will be checked with the pre-defined test cases.
+* After implementation, the result will be checked with the pre-defined test cases.
 * Once all test cases are passed, your solution can be merged into the master!
 
 #### What will we learn?
