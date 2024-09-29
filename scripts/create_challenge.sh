@@ -21,7 +21,7 @@ rust-coding-challenges = { path = "../../" }' "$CHALLENGE_CARGO_TOML"
 
 cat <<EOT > "$CHALLENGE_DIR/src/main.rs"
 use rust_coding_challenges::utils::read_text_file_from_args;
-
+use $CHALLEGE_NAME::solve;
 fn main() -> std::io::Result<()> {
     let content = read_text_file_from_args()?;
     let result = solve(&content);
@@ -33,7 +33,7 @@ EOT
 
 # Create the lib.rs file with a sample solve function
 cat <<EOL > "$CHALLENGE_DIR/src/lib.rs"
-pub fn solve() -> Result<(), String> {
+pub fn solve(input: &str) -> Result<(), String> {
     // TODO: Implement the solution for $CHALLENGE_NAME
     Ok(())
 }
