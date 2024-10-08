@@ -1,54 +1,41 @@
 
-use memmap2::MmapOptions;
-use wc_command::solve;
-use std::{fs::File, io::{self, BufRead, BufReader, Read, Write}, str, time::Instant};
+use wc_command::{count_word_occurrences, count_words, read_file_as_string};
+use std::env;
 
-fn main() -> std::io::Result<()> {
-    let start = Instant::now();
-    // let file_path = "/Users/namdo/Desktop/learntocodetogether/random_1m_lines.txt";
-    let file_path = "/Users/namdo/Desktop/learntocodetogether/random_10m_lines.txt";
-    let text = read_file_to_string(file_path)?;
-    let wc = solve(&text);
-    println!("total words: {:?}", wc);
-    println!("total time: {:?}", start.elapsed());
-    println!("OK: {}", 8503930 == wc);
+fn main() {
+    let args: Vec<String> = env::args().collect();
 
-    let time = Instant::now();
-    let file = File::open(file_path)?;
-
-    let mmap = unsafe { MmapOptions::new().map(&file)? };
-    let text = unsafe { str::from_utf8_unchecked(&mmap) };
-    let str_time = Instant::now();
-    println!("finish converting to string: {:?}", str_time.elapsed());
-    solve(text);
-    println!("Elapsed time for mmap: {:?}", time.elapsed());
-    Ok(())
-}
-
-
-fn million_lines(n: usize, file_path: &str, new_file_path: &str) -> io::Result<()> {
-    let mut src = File::open(file_path)?;
-
-    let mut content = String::new();
-    src.read_to_string(&mut content)?;
-
-    let mut des = File::create(new_file_path)?;
-
-    for i in 0..n {
-        des.write_all(content.as_bytes())?;
+    if args.len() < 2 || args[1] != "rccwc" {
+        eprintln!("Usage: rccwc -w <file_path> or rccwc -wo <word> <file_path>");
+        return;
     }
 
-    Ok(())
+    match args[2].as_str() {
+        "-w" => {
+            if args.len() != 4 {
+                eprintln!("Usage: rccwc -w <file>");
+                return;
+            }
+            let file_path = &args[3];
+            let text = read_file_as_string(&file_path);
+            let total_words = count_words(&text);
+            println!("Total words: {}", total_words);
+        } 
+        "-wo" => {
+            if args.len() != 5 {
+                eprintln!("Usage: rccwc -wc <word> <file_path>");
+                return;
+            }
+            let word = &args[3];
+            let file_path = &args[4];
+            let text = read_file_as_string(&file_path);
+            let total_occurrences = count_word_occurrences(&text, word.to_string());
+            println!("Total occurrences of '{}': {} ", word, total_occurrences);
+        }
+        _ => {
+            eprintln!("Invalid option. Usage: rccwc -w <file_path> or -wo <word> <file_path>")
+        }
+    }
+    
 }
 
-fn read_file_to_string(file_path: &str) -> io::Result<String>{
-    let file = File::open(file_path)?;
-    let mut reader = BufReader::new(file);
-    let mut buffer = String::new();
-    let mut content = String::new();
-    while reader.read_line(&mut buffer)? > 0 {
-        content.push_str(&buffer);
-        buffer.clear();
-    }
-    Ok(content)
-}
