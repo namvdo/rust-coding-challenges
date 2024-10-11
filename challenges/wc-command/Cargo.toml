@@ -5,3 +5,6 @@ edition = "2021"
 
 [dependencies]
 rust-coding-challenges = { path = "../../" }
+rayon = "1.10"
+rand = "0.8"
+memmap2 = "0.9.5"
