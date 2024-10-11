@@ -1,8 +1,5 @@
-use core::num;
 use core::str;
-use std::time::Instant;
 use memmap2::MmapOptions;
-use std::cmp::min;
 use std::fs::File;
 use std::sync::atomic::AtomicUsize;
 use std::sync::atomic::Ordering;
@@ -28,94 +25,104 @@ pub fn count_word_occurrences(text: &str, word: String) -> usize {
 
 fn count_in_paralell<F>(text: &str, count_fn: F) -> usize
 where
-    F: Fn(&[&str]) -> usize + Send + Sync + 'static,
+    F: Fn(&str) -> usize + Send + Sync + 'static,
 {
-    let num_threads: usize = std::thread::available_parallelism().unwrap().get();
-    let lines: Vec<&str> = text.lines().collect();
-    let lines_per_thread = (lines.len() + num_threads - 1) / num_threads;
-    let total_word_count = Arc::new(AtomicUsize::new(0));
-    // let mut handles = Vec::new();
+    let num_threads: usize = thread::available_parallelism().unwrap().get();
+    let total_word_count: Arc<AtomicUsize> = Arc::new(AtomicUsize::new(0));
     let count_fn = Arc::new(count_fn);
-    let start = Instant::now();
-    // for i in 0..num_threads {
-    //     let start = lines_per_thread * i;
-    //     let end = min(start + lines_per_thread, lines.len());
-    //     if is_valid_range(start, end, lines.len()) {
-    //         let chunk = lines[start..end].to_vec();
-    //         let count_fn_clone = Arc::clone(&count_fn);
-    //         let total_word_count_clone = total_word_count.clone();
-
-    //         let handle = thread::spawn(move || {
-    //             let count = count_fn_clone(chunk);
-    //             total_word_count_clone.fetch_add(count, Ordering::Relaxed);
-    //         });
-    //         handles.push(handle);
-    //     }
-    // }
-
-
-    thread::scope(|s| {
-        for i in 0..num_threads {
-            let start = lines_per_thread * i;
-            let end = min(start + lines_per_thread, lines.len());
-            
-            if is_valid_range(start, end, lines.len()) {
-                let chunk = &lines[start..end]; // Borrow a slice of `&str`
-                let count_fn_clone = Arc::clone(&count_fn);
-                let total_word_count_clone = Arc::clone(&total_word_count);
-
-                s.spawn(move || {
-                    let count = count_fn_clone(chunk); // Use the borrowed slice here
-                    total_word_count_clone.fetch_add(count, Ordering::Relaxed);
-                });
-            }
-        }
+    let chunks = get_chunks(text, num_threads);
+    thread::scope(|scope| {
+        for i in 0..chunks.len() {
+            let total_word_count_clone = Arc::clone(&total_word_count); 
+            let count_fn_clone = Arc::new(&count_fn); 
+            let chunk = chunks[i];
+            scope.spawn(move || {
+                let count = count_fn_clone(chunk);
+                total_word_count_clone.fetch_add(count, Ordering::Relaxed);
+            });
+        } 
     });
-
-    println!("Finish loop in: {:?}", start.elapsed());
-
-    // for handle in handles {
-    //     handle.join().unwrap();
-    // }
     total_word_count.load(Ordering::Relaxed)
 }
 
-fn is_valid_range(start: usize, end: usize, len: usize) -> bool {
-    start < end && end <= len 
-}
 
-fn chunk_text(text: &str, num_chunks: usize) -> Vec<&str> {
-    let chunk_size = text.len() / num_chunks;
-    let mut chunks = Vec::new();
-    let mut start = 0;
 
-    while start < text.len() {
-        let end = min(text.len(), start + chunk_size);
-        let chunk = &text[start..end];
-        chunks.push(chunk);
-        start = end;
+fn get_chunks(text: &str, partitions: usize) -> Vec<&str> {
+    let mut end_index = 0;
+    let mut chunks = Vec::with_capacity(partitions);  
+
+    for i in 0..partitions {
+        let start_index = if i == 0 { 0 } else { end_index + 1 }; 
+        end_index = get_end_index(text, i, start_index, partitions);
+        if start_index < text.len() {
+            let chunk = &text[start_index..end_index];
+            chunks.push(chunk);
+        }
     }
     chunks
 }
 
-
-fn collect_lines_parallel(text: &str, num_threads: usize) -> Vec<&str> {
-    let mut result: Vec<&str> = Vec::new();
-    let mut handles = Vec::new();
-    
+fn get_end_index(text: &str, i: usize, start_index: usize, partitions: usize) -> usize {
+    let chunk_size = text.len() / partitions;
+    let bytes = text.as_bytes();
+    let mut end_index = start_index + chunk_size;
+    if end_index >= text.len() || i == partitions - 1 {
+        return text.len();  
+    }
+    while end_index < text.len() && bytes[end_index] != b' ' {
+        end_index += 1;
+    }
+    end_index
 }
 
-fn count_words_in_chunk(chunk: &[&str]) -> usize {
-    chunk
-        .iter()
-        .flat_map(|line| line.split_whitespace())
-        .count()
+
+// fn count_words_in_chunk(chunk: &str) -> usize {
+//     chunk
+//     .lines()
+//         .flat_map(|line| line.split_whitespace())
+//         .count()
+// }
+
+fn count_words_in_chunk(chunk: &str) -> usize {
+    let mut count = 0;
+    let mut in_word = false;
+    for c in chunk.chars() {
+        if c.is_whitespace() {
+            in_word = false;
+        } else {
+            if !in_word {
+                count += 1;
+                in_word = true;
+            }
+        }
+    }
+    count
 }
 
-fn count_word_occurrences_in_chunk(chunk: &[&str], word: &str) -> usize {
-    chunk
-        .iter()
-        .flat_map(|line| line.split_whitespace())
-        .filter(|&w| w == word)
-        .count()
+
+
+// fn count_word_occurrences_in_chunk(chunk: &str, word: &str) -> usize {
+//     chunk
+//         .lines()
+//         .flat_map(|line| line.split_whitespace())
+//         .filter(|&w| w == word)
+//         .count()
+// }
+
+fn count_word_occurrences_in_chunk(chunk: &str, word: &str) -> usize {
+    let mut count = 0;
+    let word_len = word.len();
+    let mut start = 0;
+    let chunk_bytes = chunk.as_bytes();
+    while let Some(pos) = chunk[start..].find(word) {
+        let end = start + pos + word_len;
+        if start + pos == 0 
+            || chunk_bytes[start + pos - 1].is_ascii_whitespace() 
+            && (end == chunk.len() || chunk_bytes[end].is_ascii_whitespace()) 
+        {
+            count += 1;
+        }
+        start += pos + word_len;
+    }
+    count
 }

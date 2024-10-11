@@ -35,6 +35,13 @@ mod tests {
     }
 
     #[test]
+    fn test_count_word_occurrences_case_sensitive() {
+        let text = "Rust is performant, rust is powerful";
+        let word = "rust".to_string();
+        assert_eq!(count_word_occurrences(text, word), 1)
+    }
+
+    #[test]
     fn test_count_word_occurrences_multiple_occurrences() {
         let text = "Hello world\nThis is a test\nThis test is just a test";
         let word = "test".to_string();
@@ -54,6 +61,13 @@ mod tests {
         let another = "another".to_string();
         assert_eq!(count_word_occurrences(&text, test), 3_000_000);
         assert_eq!(count_word_occurrences(&text, another), 2_000_000);
+    }
+
+    #[test]
+    fn test_count_word_occurrens_one_letter_large_input() {
+        let text = "a b c d e f g h i j k m n n n ".repeat(10_000_000);
+        let n = "n".to_string();
+        assert_eq!(count_word_occurrences(&text, n), 30_000_000);
     }
 
 }
