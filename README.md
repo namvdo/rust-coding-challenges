@@ -27,6 +27,7 @@ But the quest for knowledge acquisition and intellectual curiosity doesn't need 
 | Challenge Name  | Complexity | Author       | Relevant Knowledge                     |
 |------------------|------------|--------------|----------------------------------------|
 | [Simple Parser](https://github.com/namvdo/rust-coding-challenges/tree/master/challenges/simple-parser)     | Easy       | [Rudi Cilibrasi](https://github.com/rudi-cilibrasi)    | String manipulation, data structures    |
+| [wc command](https://github.com/namvdo/rust-coding-challenges/tree/master/challenges/wc-command) | Medium |  [namvdo](https://github.com/namvdo) | MMap, unsafe operations, string manipulation, parallel processing | 
 
 ## Getting Started
 
