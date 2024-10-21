@@ -42,3 +42,5 @@ Run test test:
 ```bash
 cargo test
 ```
+
+Blog post explaining the implementation: https://learntocodetogether.com/rcc-word-count-command/
