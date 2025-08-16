@@ -4,6 +4,6 @@ version = "0.1.0"
 edition = "2021"
 
 [workspace]
-members = [ "challenges/branch-prediction", "challenges/simple-cas", "challenges/simple-parser" , "challenges/wc-command"]
+members = [ "challenges/branch-prediction", "challenges/cache-prediction", "challenges/simple-cas", "challenges/simple-parser" , "challenges/wc-command"]
 
 [dependencies]
